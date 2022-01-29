@@ -1,3 +1,4 @@
+def game
  puts "じゃんけん・・・"
 def janken
  puts "0(グー)1(チョキ)2(パー)3(戦わない)"
@@ -29,17 +30,14 @@ def janken
   end
   
  puts "------------------"
- 
- win = (hands_type == 0 && cp == 1) || (hands_type == 1 && cp == 2) || (hands_type == 2 && cp == 0)
- lose = !(win)
   
   if hands_type == cp
     puts "あいこで〜"
     return true
-  elsif win
+  elsif (hands_type == 0 && cp == 1) || (hands_type == 1 && cp == 2) || (hands_type == 2 && cp == 0)
     @result = "win"
     return false
-  elsif lose
+  else
     @result = "lose"
     return false
   end
@@ -83,18 +81,17 @@ if @result == "win"
   end
   
  puts "------------------"
- 
- draw = direction_type != cp2
   
    if direction_type == cp2
     puts "勝ち"
-    exit
-   elsif draw 
+    return false
+   else
     @result = "draw"
+    return true
    end
 end
   
-if @result == "lose"
+ if @result == "lose"
   puts "あっち向いて〜(顔を向ける方向)"
   puts "0(上)1(下)2(右)3(左)"
  
@@ -127,18 +124,17 @@ if @result == "lose"
   
   puts "------------------"
   
-  draw = direction_type != cp2
-  
     if direction_type == cp2
      puts "負け"
-     exit
-    elsif draw
-     @result = "draw"
+     return false
+    else
+     return true
     end
+ end
 end
 
 next_game = true
 
 while next_game
-  next_game = janken
+  next_game = game
 end
